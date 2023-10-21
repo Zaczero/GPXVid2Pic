@@ -306,6 +306,10 @@ async def main() -> NoReturn:
             # Remove points without image paths
             points = [p for p in points if p['img_path']]
 
+            if len(points) < 2:
+                print('🚨 No images were updated.')
+                continue
+
             # Calculate the direction for each point
             for p, pn in zip(points, points[1:]):
                 p['direction'] = bearing(p, pn)
